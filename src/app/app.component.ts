@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GeolocationService } from './services/geolocation.service';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+
+  geolocations = [];
+  baseGeolocation;
+
+  constructor(private geolocationService: GeolocationService) {
+    this.geolocationService.fetchGeolocations().subscribe((response) => {
+      this.geolocations = response;
+      this.baseGeolocation = this.geolocations[0];
+    });
+  }
 }

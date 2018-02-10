@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
+
+import { GeolocationService } from './services/geolocation.service';
 
 
 @NgModule({
@@ -12,11 +15,14 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAYyHgIcnrOZOTf3Fcslh5McFYLU6yF5A0'
     })
   ],
-  providers: [],
+  providers: [
+    GeolocationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
